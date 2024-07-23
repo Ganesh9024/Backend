@@ -1,11 +1,15 @@
 const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
-const userdata =require("./utility/users.json")
  const rootroute =require("./routes/rootroute")
-
+ const userroute =require("./routes/userroute")
+ const productroute =require("./routes/productroute")
+const connectDB = require("./config/db");
 const PORT = process.env.PORT || 5000 || 6000;
 const app = express();
+connectDB();
+
+// monopolistic architecture
 // get request
 // app.get("/",(req,res)=>{
 //     res.send("hello world");
@@ -13,10 +17,17 @@ const app = express();
 // app.get("/dev",(req,res)=>{
 //     res.send("Dev bsdk ");
 // });
+
+//  app.get("/users",(req,res)=>{
+//    res.send(userdata);
+// });
+
+// distributive architecture
+
+
  app.use("/",rootroute);
- app.get("/users",(req,res)=>{
-   res.send(userdata);
-});
+app.use("/users",userroute);
+app.use("/product",productroute);
 
 // server create
 app.listen(PORT,()=>{
