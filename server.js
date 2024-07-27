@@ -5,7 +5,7 @@ const dotenv = require("dotenv").config();
  const userroute =require("./routes/userroute")
  const productroute =require("./routes/productroute")
 const connectDB = require("./config/db");
-const PORT = process.env.PORT || 5000 || 6000;
+const PORT = process.env.PORT ;
 const app = express();
 connectDB();
 
@@ -27,7 +27,7 @@ connectDB();
 
  app.use("/",rootroute);
 app.use("/users",userroute);
-app.use("/product",productroute);
+app.use("/products",productroute);
 
 // server create
 app.listen(PORT,()=>{
